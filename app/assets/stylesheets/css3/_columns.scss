@@ -45,3 +45,20 @@
   // auto || length
   @include prefixer(column-width, $length, webkit moz spec);
 }
+
+@mixin break-inside($val: auto) {
+  @include prefixer(break-inside, $val, webkit moz spec);
+  
+  // Non-Standard
+  -webkit-column-break-inside: $val;
+}
+
+@each $break-rule in ('break-before', 'break-after') {
+  @mixin #{$break-rule}($val: auto) {
+    // auto || always || left || right || recto || verso || page || column || region || avoid || avoid-page || avoid-column || avoid-region
+    @include prefixer(#{$break-rule}, $val, webkit moz spec);
+  
+    // Non-Standard
+    -webkit-column-#{$break-rule}: $val;
+  }
+}
